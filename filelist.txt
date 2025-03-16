@@ -21,8 +21,8 @@ Dataset:
 	Link: https://github.com/aishwaryamathuria/mathuria_Assignment10_Dataset/blob/main/EventLog/qr_code_restaurant_data.csv
 
     5. Combined Event Log
-	In ZIP: Appendix_Resources/EventLog/qr_code_restaurant_data.csv
-	Link: https://github.com/aishwaryamathuria/mathuria_Assignment10_Dataset/blob/main/EventLog/qr_code_restaurant_data.csv
+	In ZIP: Appendix_Resources/EventLog/mathuria_restauraunt_data.csv
+	Link: https://github.com/aishwaryamathuria/mathuria_Assignment10_Dataset/blob/main/EventLog/mathuria_restauraunt_data.csv
  
 
 KNIME Workflow:
