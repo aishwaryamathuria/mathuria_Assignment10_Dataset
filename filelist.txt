@@ -1,0 +1,43 @@
+Report:
+The report has been added to zip with name mathuria-a-paper.pdf
+
+Visualization charts:
+The generated visuals images have been added in Appendix A of the pdf - mathuria-a-paper.pdf
+
+Dataset:
+    Links to generated simulation logs have been added in Appendix B of the pdf - mathuria-a-paper.pdf
+    The simulation logs include -
+    1. Event log for process flow with human wait staff 
+    	In ZIP: Appendix_Resources/EventLog/restaurant_data.csv
+	Link: https://github.com/aishwaryamathuria/mathuria_Assignment10_Dataset/blob/main/EventLog/restaurant_data.csv
+
+    2. Event log for process flow with robot wait staff 
+	In ZIP: Appendix_Resources/EventLog/robot_restaurant_data.csv
+	Link: https://github.com/aishwaryamathuria/mathuria_Assignment10_Dataset/blob/main/EventLog/robot_restaurant_data.csv
+
+
+    3. Event log for process flow with human wait staff and QR payment
+	In ZIP: Appendix_Resources/EventLog/qr_code_restaurant_data.csv
+	Link: https://github.com/aishwaryamathuria/mathuria_Assignment10_Dataset/blob/main/EventLog/qr_code_restaurant_data.csv
+
+    5. Combined Event Log
+	In ZIP: Appendix_Resources/EventLog/qr_code_restaurant_data.csv
+	Link: https://github.com/aishwaryamathuria/mathuria_Assignment10_Dataset/blob/main/EventLog/qr_code_restaurant_data.csv
+ 
+
+The folders include -
+CSV files of format
+1. Event log - simulation-event-log-10-hours-<barista count>-min service time-mean service time-max service time-interarrival time-hours(10).csv
+2. txt files for case by case events for barista count and interarrival times.
+3. txt files for trace for barista count and interarrival times.
+
+KNIME Workflow:
+
+	Knime workflow had been added as a part of the submitted zip Appendix_Resources/KnimeWorkflow/Mathuria_Wisconsin_Restaurants_GRP.knwf and also uploaded on https://github.com/aishwaryamathuria/mathuria_Assignment10_Dataset/blob/main/KnimeWorkflow/Mathuria_Wisconsin_Restaurants_GRP.knwf 
+
+Programs:
+There are 4 python scripts used in this KNIME workflow added in 3 python nodes added in Programs folder as well
+	1. restauraunt_data.py - To generate event logs for human wait staff
+	2. restauraunt_robot_data.py - To generate event logs for robot wait staff
+	3. restauraunt_qrcode_data.py - To generate event logs for human wait staff with QR payment
+	4. combine_event_logs.py - combine the 3 csvs into one for Celonis
