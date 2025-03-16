@@ -31,7 +31,7 @@ menu_items = {
     12: {"description": "Wine", "type": "beverage", "price": 800},
 }
 
-activities = ["Greeted", "Seated", "Ordered", "Prepared", "Served", "Paid"]
+activities = ["Greeted", "Seated", "Ordered", "Prepared", "Served", "Paid by QR Code"]
 
 # Function to generate random data for a simulation
 def generate_event_log(num_events):
@@ -162,7 +162,7 @@ def assign_resource_for_activity(activity, timestamp, resource_availability):
         resource_type = "waiter"
         resource = get_available_resource(resource_type, timestamp, resource_availability)
         location = "main dining"
-    elif activity == "Paid":
+    elif activity == "Paid by QR Code":
         resource_type = "waiter"
         payment_delay=timedelta(minutes=random.randint(2,6))
         resource = get_available_resource(resource_type, timestamp, resource_availability, payment_delay)
