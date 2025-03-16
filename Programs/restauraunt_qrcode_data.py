@@ -70,7 +70,7 @@ def generate_event_log(num_events):
                 order_items = order_item_descriptions = order_item_types = order_size = order_item_prices = bill_for_items = bill_tax = bill_tip = None
                 event = {
                     "scenario": "scenario1",
-                    "caseID": "1_" + str(case_id),
+                    "caseID": "3_" + str(case_id),
                     "timestamp": timestamp,
                     "activity": "Returned",
                     "resource": 'customer',
@@ -110,8 +110,8 @@ def generate_event_log(num_events):
                 
                 # Create the event for this activity
                 event = {
-                    "scenario": "scenario1",
-                    "caseID": "1_" + str(case_id),
+                    "scenario": "scenario3",
+                    "caseID": "3_" + str(case_id),
                     "timestamp": timestamp,
                     "activity": activity,
                     "resource": resource,
