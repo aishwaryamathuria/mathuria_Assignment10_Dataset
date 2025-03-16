@@ -109,9 +109,6 @@ def generate_event_log(num_events):
         # Add all events for this customer to the log
         log.extend(case_events)
     
-    # Create DataFrame and write to CSV
-    df = pd.DataFrame(log)
-    df.to_csv("restaurant_event_log.csv", index=False)
     return df
 
 # Function to assign resources and ensure availability for the given activity
