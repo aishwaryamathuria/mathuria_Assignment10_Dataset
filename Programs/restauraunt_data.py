@@ -11,10 +11,10 @@ resources = {
 }
 
 delays = {
-    "receptionist": timedelta(minutes=random.randint(6, 10)),
+    "receptionist": random.randint(6, 10),
     "tables": 1,
-    "waiter": timedelta(minutes=random.randint(6, 10)),
-    "chef": timedelta(minutes=random.randint(6, 10))
+    "waiter": random.randint(6, 10),
+    "chef": random.randint(6, 10),
 }
 
 locations = ["reception", "main dining", "kitchen"]
@@ -66,49 +66,72 @@ def generate_event_log(num_events):
         case_events = []
         
         for activity in activities:
-            # Get the assigned resource and location for the current activity
-            resource_type, resource, location = assign_resource_for_activity(activity, timestamp, resource_availability)
-            
-            # Generate random menu items for the order if it's the "Ordered" activity
-            if activity == "Ordered":
-                order_items = random.sample(list(menu_items.keys()), random.randint(1, len(menu_items.keys())))
-                order_item_descriptions = [menu_items[item]["description"] for item in order_items]
-                order_item_types = [menu_items[item]["type"] for item in order_items]
-                order_size = len(order_items)
-                order_item_prices = [menu_items[item]["price"] for item in order_items]
-                
-                # Calculate total bill, tax, and tip
-                bill_for_items = sum(order_item_prices)
-                bill_tax = int(bill_for_items * 0.10)  # Assuming 10% tax
-                bill_tip = int(bill_for_items * 0.15)  # Assuming 15% tip
-            else:
+            if ((activity == "Seated") and (timestamp - start_time) > timedelta(minutes=random.randint(6,8))):
                 order_items = order_item_descriptions = order_item_types = order_size = order_item_prices = bill_for_items = bill_tax = bill_tip = None
-            
-            # Create the event for this activity
-            event = {
-            	"scenario": "scenario1",
-                "caseID": "1_" + str(case_id),
-                "timestamp": timestamp,
-                "activity": activity,
-                "resource": resource,
-                "resource_type": resource_type,
-                "location": location,
-                "party_size": party_size,
-                "order_items": order_items,
-                "order_item_descriptions": order_item_descriptions,
-                "order_item_types": order_item_types,
-                "order_size": order_size,
-                "order_item_prices": order_item_prices,
-                "bill_for_items": bill_for_items,
-                "bill_tax": bill_tax,
-                "bill_tip": bill_tip
-            }
-            
-            # Append the event to the case
-            case_events.append(event)
-            
-            # Update the timestamp for the next activity within the case, allowing overlap
-            timestamp = timestamp + timedelta(minutes=random.randint(1, delays[resource_type]))  # Random overlap for next activity
+                event = {
+                    "scenario": "scenario1",
+                    "caseID": "1_" + str(case_id),
+                    "timestamp": timestamp,
+                    "activity": "Returned",
+                    "resource": 'customer',
+                    "resource_type": 'customer',
+                    "location": 'reception',
+                    "party_size": party_size,
+                    "order_items": order_items,
+                    "order_item_descriptions": order_item_descriptions,
+                    "order_item_types": order_item_types,
+                    "order_size": order_size,
+                    "order_item_prices": order_item_prices,
+                    "bill_for_items": bill_for_items,
+                    "bill_tax": bill_tax,
+                    "bill_tip": bill_tip
+                }
+                print(case_id)
+                case_events.append(event)
+            else:
+                # Get the assigned resource and location for the current activity
+                resource_type, resource, location = assign_resource_for_activity(activity, timestamp, resource_availability)
+                
+                # Generate random menu items for the order if it's the "Ordered" activity
+                if activity == "Ordered":
+                    order_items = random.sample(list(menu_items.keys()), random.randint(1, len(menu_items.keys())))
+                    order_item_descriptions = [menu_items[item]["description"] for item in order_items]
+                    order_item_types = [menu_items[item]["type"] for item in order_items]
+                    order_size = len(order_items)
+                    order_item_prices = [menu_items[item]["price"] for item in order_items]
+                    
+                    # Calculate total bill, tax, and tip
+                    bill_for_items = sum(order_item_prices)
+                    bill_tax = int(bill_for_items * 0.10)  # Assuming 10% tax
+                    bill_tip = int(bill_for_items * 0.15)  # Assuming 15% tip
+                else:
+                    order_items = order_item_descriptions = order_item_types = order_size = order_item_prices = bill_for_items = bill_tax = bill_tip = None
+                
+                # Create the event for this activity
+                event = {
+                    "scenario": "scenario1",
+                    "caseID": "1_" + str(case_id),
+                    "timestamp": timestamp,
+                    "activity": activity,
+                    "resource": resource,
+                    "resource_type": resource_type,
+                    "location": location,
+                    "party_size": party_size,
+                    "order_items": order_items,
+                    "order_item_descriptions": order_item_descriptions,
+                    "order_item_types": order_item_types,
+                    "order_size": order_size,
+                    "order_item_prices": order_item_prices,
+                    "bill_for_items": bill_for_items,
+                    "bill_tax": bill_tax,
+                    "bill_tip": bill_tip
+                }
+                
+                # Append the event to the case
+                case_events.append(event)
+                
+                # Update the timestamp for the next activity within the case, allowing overlap
+                timestamp = timestamp + timedelta(minutes=random.randint(1, delays[resource_type]))  # Random overlap for next activity
         
         # Add all events for this customer to the log
         log.extend(case_events)
