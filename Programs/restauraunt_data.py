@@ -5,12 +5,14 @@ from datetime import datetime, timedelta
 # Define the resources and other variables
 resources = {
     "receptionist": ["receptionist1", "receptionist2", "receptionist3"],
+    "tables": ['1', '2', '3', '4', '5', '6'],
     "waiter": ['waiter1', 'waiter2', 'waiter3'],
     "chef": ['chef1', 'chef2']
 }
 
 delays = {
     "receptionist": 4,
+    "tables": 1,
     "waiter": 4,
     "chef": 10
 }
@@ -29,7 +31,7 @@ menu_items = {
     12: {"description": "Wine", "type": "beverage", "price": 800},
 }
 
-activities = ["Seated", "Ordered", "Prepared", "Served", "Paid"]
+activities = ["Greeted", "Seated", "Ordered", "Prepared", "Served", "Paid"]
 
 # Function to generate random data for a simulation
 def generate_event_log(num_events):
@@ -57,7 +59,7 @@ def generate_event_log(num_events):
         party_size = random.randint(1, 6)
         
         # Randomly generate the arrival timestamp (overlap with other events)
-        timestamp = start_time + timedelta(minutes=random.randint(0, 10))  # Allow some overlap with other customers
+        timestamp = start_time + timedelta(minutes=random.randint(6, 10))  # Allow some overlap with other customers
         
         # Each customer goes through activities, but activities can overlap with others
         case_events = []
@@ -114,8 +116,12 @@ def generate_event_log(num_events):
 
 # Function to assign resources and ensure availability for the given activity
 def assign_resource_for_activity(activity, timestamp, resource_availability):
-    if activity == "Seated":
+    if activity == "Greeted":
         resource_type = "receptionist"
+        resource = get_available_resource(resource_type, timestamp, resource_availability)
+        location = "reception"
+    if activity == "Seated":
+        resource_type = "tables"
         resource = get_available_resource(resource_type, timestamp, resource_availability)
         location = "reception"
     elif activity == "Ordered":
