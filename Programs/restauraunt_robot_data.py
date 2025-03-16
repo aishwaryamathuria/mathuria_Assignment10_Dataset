@@ -139,13 +139,14 @@ def assign_resource_for_activity(activity, timestamp, resource_availability):
         location = "main dining"
     elif activity == "Paid to Robot":
         resource_type = "waiter"
-        resource = get_available_resource(resource_type, timestamp, resource_availability)
+        payment_delay = timedelta(minutes=random.randint(6, 10))
+        resource = get_available_resource(resource_type, timestamp, resource_availability, payment_delay)
         location = "main dining"
     
     return resource_type, resource, location
 
 # Function to get an available resource
-def get_available_resource(resource_type, timestamp, resource_availability):
+def get_available_resource(resource_type, timestamp, resource_availability, payment_delay = timedelta(minutes=0)):
     # Get a list of resources for the given type
     available_resources = resources[resource_type]
     
@@ -154,7 +155,7 @@ def get_available_resource(resource_type, timestamp, resource_availability):
         # Check if the resource is currently available
         if resource not in resource_availability or resource_availability[resource] <= timestamp:
             # Resource is available, assign it and update its availability time
-            resource_availability[resource] = timestamp + timedelta(minutes=delays[resource_type])
+            resource_availability[resource] = timestamp + timedelta(minutes=delays[resource_type]) + payment_delay
             return resource
     
     # If no resources are available, delay the task by 10 minutes and retry
