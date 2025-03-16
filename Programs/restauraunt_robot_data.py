@@ -70,8 +70,8 @@ def generate_event_log(num_events):
             if ((activity == "Seated") and (timestamp - start_time) > timedelta(minutes=random.randint(6,8))):
                 order_items = order_item_descriptions = order_item_types = order_size = order_item_prices = bill_for_items = bill_tax = bill_tip = None
                 event = {
-                    "scenario": "scenario1",
-                    "caseID": "1_" + str(case_id),
+                    "scenario": "scenario2",
+                    "caseID": "2_" + str(case_id),
                     "timestamp": timestamp,
                     "activity": "Returned",
                     "resource": 'customer',
@@ -111,8 +111,8 @@ def generate_event_log(num_events):
                 
                 # Create the event for this activity
                 event = {
-                    "scenario": "scenario1",
-                    "caseID": "1_" + str(case_id),
+                    "scenario": "scenario2",
+                    "caseID": "2_" + str(case_id),
                     "timestamp": timestamp,
                     "activity": activity,
                     "resource": resource,
