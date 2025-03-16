@@ -11,10 +11,10 @@ resources = {
 }
 
 delays = {
-    "receptionist": 4,
+    "receptionist": timedelta(minutes=random.randint(6, 10)),
     "tables": 1,
-    "waiter": 4,
-    "chef": 10
+    "waiter": timedelta(minutes=random.randint(6, 10)),
+    "chef": timedelta(minutes=random.randint(6, 10))
 }
 
 locations = ["reception", "main dining", "kitchen"]
@@ -86,7 +86,8 @@ def generate_event_log(num_events):
             
             # Create the event for this activity
             event = {
-                "caseID": case_id,
+            	"scenario": "scenario1",
+                "caseID": "1_" + str(case_id),
                 "timestamp": timestamp,
                 "activity": activity,
                 "resource": resource,
