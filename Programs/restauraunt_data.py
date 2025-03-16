@@ -60,6 +60,7 @@ def generate_event_log(num_events):
         
         # Randomly generate the arrival timestamp (overlap with other events)
         timestamp = start_time + timedelta(minutes=random.randint(6, 10))  # Allow some overlap with other customers
+        start_time = timestamp
         
         # Each customer goes through activities, but activities can overlap with others
         case_events = []
