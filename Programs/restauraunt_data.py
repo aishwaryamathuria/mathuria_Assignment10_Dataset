@@ -139,13 +139,14 @@ def assign_resource_for_activity(activity, timestamp, resource_availability):
         location = "main dining"
     elif activity == "Paid":
         resource_type = "waiter"
-        resource = get_available_resource(resource_type, timestamp, resource_availability)
+        payment_delay=timedelta(minutes=random.randint(6, 10))
+        resource = get_available_resource(resource_type, timestamp, resource_availability, payment_delay)
         location = "main dining"
     
     return resource_type, resource, location
 
 # Function to get an available resource
-def get_available_resource(resource_type, timestamp, resource_availability):
+def get_available_resource(resource_type, timestamp, resource_availability, payment_delay=timedelta(minutes=0)):
     # Get a list of resources for the given type
     available_resources = resources[resource_type]
     
