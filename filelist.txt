@@ -25,12 +25,6 @@ Dataset:
 	Link: https://github.com/aishwaryamathuria/mathuria_Assignment10_Dataset/blob/main/EventLog/qr_code_restaurant_data.csv
  
 
-The folders include -
-CSV files of format
-1. Event log - simulation-event-log-10-hours-<barista count>-min service time-mean service time-max service time-interarrival time-hours(10).csv
-2. txt files for case by case events for barista count and interarrival times.
-3. txt files for trace for barista count and interarrival times.
-
 KNIME Workflow:
 
 	Knime workflow had been added as a part of the submitted zip Appendix_Resources/KnimeWorkflow/Mathuria_Wisconsin_Restaurants_GRP.knwf and also uploaded on https://github.com/aishwaryamathuria/mathuria_Assignment10_Dataset/blob/main/KnimeWorkflow/Mathuria_Wisconsin_Restaurants_GRP.knwf 
