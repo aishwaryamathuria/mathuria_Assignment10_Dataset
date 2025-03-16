@@ -89,6 +89,7 @@ def generate_event_log(num_events):
                 }
                 print(case_id)
                 case_events.append(event)
+                break
             else:
                 # Get the assigned resource and location for the current activity
                 resource_type, resource, location = assign_resource_for_activity(activity, timestamp, resource_availability)
