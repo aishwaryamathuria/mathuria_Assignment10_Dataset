@@ -108,7 +108,8 @@ def generate_event_log(num_events):
         
         # Add all events for this customer to the log
         log.extend(case_events)
-    
+        
+    df = pd.DataFrame(log)
     return df
 
 # Function to assign resources and ensure availability for the given activity
